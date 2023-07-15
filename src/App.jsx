@@ -1,24 +1,35 @@
-// import { useState } from 'react'
+import { useRef } from 'react'
 import './App.css'
-import { RenderMovies } from './components/movies'
-import { useMovies } from '../hooks/useMovies'
+import { Movies } from './components/movies.jsx'
+import { useMovies } from './hooks/useMovies.js'
 
 function App() {
-const {movies:mappedMovies} = useMovies()
+
+  const query = useRef('')
+  const newQuery = query.current.value
+  const { movies, getMovies } = useMovies(newQuery)
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    getMovies()
+    if (query === '') {
+      return
+    } 
+  }
 
   return (
     <div className='page'>
-      <header className='form'>
-        <form>
-          <input placeholder="Avengers" />
-          <button type='submit'>Search</button>
-        </form>
 
+      <header >
+        <h1>Movie Search Engine</h1>
+        <form className='form' onSubmit={handleSubmit}>
+          <input type='text' name='query' ref={query} />
+          <button  type='submit' value='query'>Search</button>
+        </form>
       </header>
     
-
       <main>
-        <RenderMovies movies={mappedMovies} />
+        <Movies movies={movies}/>
       </main>
     </div>
   )
