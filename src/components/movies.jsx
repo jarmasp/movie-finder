@@ -1,31 +1,32 @@
-const MoviesList = ({movies}) => {
+/* eslint-disable react/prop-types */
+const MovieList = ({movies}) => {
   return (
-    <ul>
+    <ul className="movies">
       {
         movies.map(movie => (
           <li key={movie.id}>
             <h3>{movie.title}</h3>
             <p>{movie.year}</p>
-            <img src={movie.img} alt={movie.Title} />
+            <img src={movie.img} alt={movie.title}/>
           </li>
-        ))
+        )) 
       }
     </ul>
   )
 }
 
- const NoResults = () => {
+const NoResults = () => {
   return (
-    <p>No movies found</p>
+    <p>No movie found</p>
   )
 }
 
-export function RenderMovies ({movies}) {
+export const Movies = ({movies}) => {
   const hasMovies = movies?.length > 0
 
   return (
     hasMovies
-      ? <MoviesList movies={movies} />
+      ? <MovieList movies={movies} />
       : <NoResults/>
-      )
+  )
 }
