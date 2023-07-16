@@ -1,10 +1,10 @@
 const API_KEY = 'e4f75770'
 
-export const searchMovies = async ({ search }) => {
-  if (search === '') return null
+export const searchMovies = async ({ query }) => {
+  if (query === '') return null
 
   try {
-    const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${search}`)
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`)
     const json = await response.json()
 
     const movies = json.Search
