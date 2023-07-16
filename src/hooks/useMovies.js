@@ -2,7 +2,7 @@ import { useState } from 'react'
 // import withResults from '../mock/with-results.json'
 import withoutResults from '../mock/without-results.json'  
 
-export const useMovies = (query) => {
+export const useMovies = ({query}) => {
   const [ResponseMovies, setResponseMovies] = useState([])
   const movies = ResponseMovies.Search
 
