@@ -13,7 +13,7 @@ export const searchMovies = async ({ query }) => {
       id: movie.imdbID,
       title: movie.Title,
       year: movie.Year,
-      image: movie.Poster
+      img: movie.Poster
     }))
   } catch (e) {
     throw new Error('Error searching movies')
